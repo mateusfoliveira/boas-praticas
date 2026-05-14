@@ -1,11 +1,6 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class Noticia {
-    String texto;
-    String classificacao;
-}
-
 public class Sistema {
 
     static ArrayList<Noticia> noticias = new ArrayList<>();
@@ -15,14 +10,12 @@ public class Sistema {
         // adiciona coisa
         if (texto != null && !texto.equals("")) {
 
-            Noticia noticia = new Noticia();
-
-            noticia.texto = texto;
+            Noticia noticia = new Noticia(texto);
 
             if (classificacao == null || classificacao.equals("")) {
-                noticia.classificacao = "duvidosa";
+                noticia.setClassificacao("duvidosa");
             } else {
-                noticia.classificacao = classificacao;
+                noticia.setClassificacao(classificacao);
             }
 
             noticias.add(noticia);
@@ -33,9 +26,9 @@ public class Sistema {
 
     public static void listarNoticias() {
         // lista tudo
-        for (int i = 0; i < noticias.size(); i++) {
-            System.out.println("Texto: " + noticias.get(i).texto);
-            System.out.println("Classificacao: " + noticias.get(i).classificacao);
+        for (Noticia noticia : noticias) {
+            System.out.println("Texto: " + noticia.getTexto());
+            System.out.println("Classificacao: " + noticia.getClassificacao());
             System.out.println("-------------------");
         }
     }
