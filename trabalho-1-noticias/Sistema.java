@@ -1,26 +1,26 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-class D {
-    String t;
-    String c;
+class Noticia {
+    String texto;
+    String classificacao;
 }
 
 public class Sistema {
 
-    static ArrayList<D> data = new ArrayList<>();
+    static ArrayList<Noticia> data = new ArrayList<>();
 
     // função que faz tudo
     public static void criarNoticia(String texto, String classificacao) {
         // adiciona coisa
         if (texto != null && !texto.equals("")) {
-            D d = new D();
-            d.t = texto;
+            Noticia d = new Noticia();
+            d.texto = texto;
 
             if (classificacao == null || classificacao.equals("")) {
-                d.c = "duvidosa";
+                d.classificacao = "duvidosa";
             } else {
-                d.c = classificacao;
+                d.classificacao = classificacao;
             }
 
             data.add(d);
@@ -32,8 +32,8 @@ public class Sistema {
     public static void listarNoticias() {
         // lista tudo
         for (int i = 0; i < data.size(); i++) {
-            System.out.println("Texto: " + data.get(i).t);
-            System.out.println("Classificacao: " + data.get(i).c);
+            System.out.println("Texto: " + data.get(i).texto);
+            System.out.println("Classificacao: " + data.get(i).classificacao);
             System.out.println("-------------------");
         }
     }
