@@ -3,10 +3,10 @@ import java.util.Scanner;
 
 public class Sistema {
 
-    static ArrayList<Noticia> noticias = new ArrayList<>();
+    ArrayList<Noticia> noticias = new ArrayList<>();
 
     // função que faz tudo
-    public static void criarNoticia(String texto, String classificacao) {
+    public void criarNoticia(String texto, String classificacao) {
         // adiciona coisa
         if (texto != null && !texto.equals("")) {
 
@@ -24,7 +24,7 @@ public class Sistema {
         }
     }
 
-    public static void listarNoticias() {
+    public void listarNoticias() {
         // lista tudo
         for (Noticia noticia : noticias) {
             System.out.println("Texto: " + noticia.getTexto());
@@ -33,7 +33,7 @@ public class Sistema {
         }
     }
 
-    public static String classificarTexto(String texto) {
+    public int calcularSuspeita(String texto){
 
         int nivelDeSuspeita = 0;
 
@@ -53,6 +53,13 @@ public class Sistema {
             nivelDeSuspeita = nivelDeSuspeita + 1;
         }
 
+        return nivelDeSuspeita;
+    }
+
+    public String classificarTexto(String texto) {
+
+        int nivelDeSuspeita = calcularSuspeita(texto);
+
         if (nivelDeSuspeita == 0) {
             return "confiavel";
         } else if (nivelDeSuspeita == 1) {
@@ -62,7 +69,7 @@ public class Sistema {
         }
     }
 
-    public static void adicionarNoticiaComClassificacao(Scanner scanner) {
+    public void adicionarNoticiaComClassificacao(Scanner scanner) {
 
         System.out.print("Digite o texto: ");
         String texto = scanner.nextLine();
@@ -70,14 +77,10 @@ public class Sistema {
         System.out.print("Digite classificacao: ");
         String classificacao = scanner.nextLine();
 
-        if (classificacao.equals("")) {
-            criarNoticia(texto, null);
-        } else {
-            criarNoticia(texto, classificacao);
-        }
+        criarNoticia(texto,classificacao);
     }
 
-    public static void adicionarNoticiaSemClassificacao(Scanner scanner) {
+    public void adicionarNoticiaSemClassificacao(Scanner scanner) {
 
         System.out.print("Digite o texto: ");
 
@@ -88,8 +91,7 @@ public class Sistema {
         criarNoticia(texto, classificacao);
     }
 
-    public static void menu() {
-        Scanner scanner = new Scanner(System.in);
+    public void menu(Scanner scanner) {
 
         while (true) {
             System.out.println("1 - adicionar manual");
@@ -117,6 +119,10 @@ public class Sistema {
 
     // inicia programa
     public static void main(String[] args) {
-        menu();
+        Scanner scanner = new Scanner(System.in);
+
+        Sistema sistema = new Sistema();
+
+        sistema.menu(scanner);
     }
 }
