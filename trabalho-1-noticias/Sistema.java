@@ -11,16 +11,16 @@ public class Sistema {
     static ArrayList<D> data = new ArrayList<>();
 
     // função que faz tudo
-    public static void f(String a, String b) {
+    public static void criarNoticia(String texto, String classificacao) {
         // adiciona coisa
-        if (a != null && !a.equals("")) {
+        if (texto != null && !texto.equals("")) {
             D d = new D();
-            d.t = a;
+            d.t = texto;
 
-            if (b == null || b.equals("")) {
+            if (classificacao == null || classificacao.equals("")) {
                 d.c = "duvidosa";
             } else {
-                d.c = b;
+                d.c = classificacao;
             }
 
             data.add(d);
@@ -29,7 +29,7 @@ public class Sistema {
         }
     }
 
-    public static void func2() {
+    public static void listarNoticias() {
         // lista tudo
         for (int i = 0; i < data.size(); i++) {
             System.out.println("Texto: " + data.get(i).t);
@@ -38,19 +38,19 @@ public class Sistema {
         }
     }
 
-    public static String analisar(String txt) {
+    public static String classificarTexto(String texto) {
         int score = 0;
 
-        if (!txt.contains("FONTE")) {
+        if (!texto.contains("FONTE")) {
             score = score + 1;
         }
-        if (txt.contains("!!!")) {
+        if (texto.contains("!!!")) {
             score = score + 1;
         }
-        if (txt.contains("URGENTE")) {
+        if (texto.contains("URGENTE")) {
             score = score + 1;
         }
-        if (txt.length() < 10) {
+        if (texto.length() < 10) {
             score = score + 1;
         }
 
@@ -63,26 +63,26 @@ public class Sistema {
         }
     }
 
-    public static void addManual(Scanner sc) {
+    public static void adicionarNoticiaComClassificacao(Scanner scanner) {
         System.out.print("Digite o texto: ");
-        String t = sc.nextLine();
+        String t = scanner.nextLine();
 
         System.out.print("Digite classificacao: ");
-        String c = sc.nextLine();
+        String c = scanner.nextLine();
 
         if (c.equals("")) {
-            f(t, null);
+            criarNoticia(t, null);
         } else {
-            f(t, c);
+            criarNoticia(t, c);
         }
     }
 
-    public static void addAuto(Scanner sc) {
+    public static void adicionarNoticiaSemClassificacao(Scanner scanner) {
         System.out.print("Digite o texto: ");
-        String t = sc.nextLine();
+        String t = scanner.nextLine();
 
-        String c = analisar(t);
-        f(t, c);
+        String c = classificarTexto(t);
+        criarNoticia(t, c);
     }
 
     public static void menu() {
@@ -97,11 +97,11 @@ public class Sistema {
             String op = sc.nextLine();
 
             if (op.equals("1")) {
-                addManual(sc);
+                adicionarNoticiaComClassificacao(sc);
             } else if (op.equals("2")) {
-                addAuto(sc);
+                adicionarNoticiaSemClassificacao(sc);
             } else if (op.equals("3")) {
-                func2();
+                listarNoticias();
             } else if (op.equals("4")) {
                 break;
             } else {
