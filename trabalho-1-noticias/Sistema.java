@@ -1,3 +1,6 @@
+import model.Classificacao;
+import model.Noticia;
+
 import java.util.ArrayList;
 
 public class Sistema {

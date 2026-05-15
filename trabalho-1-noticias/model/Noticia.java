@@ -1,3 +1,5 @@
+package model;
+
 public class Noticia {
 
     private final String texto;

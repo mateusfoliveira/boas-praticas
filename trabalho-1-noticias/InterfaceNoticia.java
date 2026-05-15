@@ -1,3 +1,6 @@
+import model.Classificacao;
+import model.Noticia;
+
 import java.util.Scanner;
 
 public class InterfaceNoticia {
