@@ -3,7 +3,7 @@ import model.Noticia;
 
 import java.util.ArrayList;
 
-public class Sistema {
+public class ClassificadorNoticias {
 
     private final ArrayList<Noticia> noticias = new ArrayList<>();
 
@@ -29,17 +29,19 @@ public class Sistema {
 
         int nivelDeSuspeita = 0;
 
-        if (!texto.contains("FONTE")) {
+        String textoCapslock = texto.toUpperCase();
+
+        if (!textoCapslock.contains("FONTE")) {
             nivelDeSuspeita++;
         }
 
         for (String termoSensacionalista:TERMOS_SENSACIONALISTAS){
-            if (texto.contains(termoSensacionalista)) {
+            if (textoCapslock.contains(termoSensacionalista)) {
                 nivelDeSuspeita++;
             }
         }
 
-        if (texto.length() < 10) {
+        if (textoCapslock.length() < 10) {
             nivelDeSuspeita++;
         }
 

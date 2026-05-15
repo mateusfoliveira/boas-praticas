@@ -1,9 +1,9 @@
 public class Main {
     public static void main(String[] args) {
 
-        Sistema sistema = new Sistema();
+        ClassificadorNoticias classificadorNoticias = new ClassificadorNoticias();
 
-        InterfaceNoticia interfaceNoticia = new InterfaceNoticia(sistema);
+        InterfaceNoticia interfaceNoticia = new InterfaceNoticia(classificadorNoticias);
 
         interfaceNoticia.menu();
     }

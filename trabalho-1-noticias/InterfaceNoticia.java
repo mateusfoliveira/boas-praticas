@@ -5,12 +5,12 @@ import java.util.Scanner;
 
 public class InterfaceNoticia {
 
-    private final Sistema sistema;
+    private final ClassificadorNoticias classificadorNoticias;
 
     private final Scanner scanner = new Scanner(System.in);
 
-    public InterfaceNoticia(Sistema sistema){
-        this.sistema = sistema;
+    public InterfaceNoticia(ClassificadorNoticias classificadorNoticias){
+        this.classificadorNoticias = classificadorNoticias;
 
     }
 
@@ -59,7 +59,7 @@ public class InterfaceNoticia {
 
     private void tentarSalvarNoticia(String texto, Classificacao classificacao){
         try {
-            sistema.criarNoticia(texto,classificacao);
+            classificadorNoticias.criarNoticia(texto,classificacao);
         }
         catch (IllegalArgumentException e){
             System.out.println("Erro no Sistema: Tentativa de salvar noticia com dados nulos.");
@@ -79,14 +79,14 @@ public class InterfaceNoticia {
 
         String texto = capturarTexto();
 
-        Classificacao classificacao = sistema.classificarTexto(texto);
+        Classificacao classificacao = classificadorNoticias.classificarTexto(texto);
 
         tentarSalvarNoticia(texto,classificacao);
     }
 
     private void listarNoticias() {
 
-        for (Noticia noticia : sistema.getNoticias()) {
+        for (Noticia noticia : classificadorNoticias.getNoticias()) {
             System.out.println("Texto: " + noticia.getTexto());
             System.out.println("Classificacao: " + noticia.getClassificacao().toString());
             System.out.println("-------------------");
