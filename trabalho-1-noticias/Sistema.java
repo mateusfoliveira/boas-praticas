@@ -1,9 +1,10 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Sistema {
 
     private final ArrayList<Noticia> noticias = new ArrayList<>();
+
+    private static final String[] TERMOS_SENSACIONALISTAS = {"URGENTE", "!!!"};
 
     public ArrayList<Noticia> getNoticias() {
         return noticias;
@@ -34,19 +35,17 @@ public class Sistema {
         int nivelDeSuspeita = 0;
 
         if (!texto.contains("FONTE")) {
-            nivelDeSuspeita = nivelDeSuspeita + 1;
+            nivelDeSuspeita++;
         }
 
-        if (texto.contains("!!!")) {
-            nivelDeSuspeita = nivelDeSuspeita + 1;
-        }
-
-        if (texto.contains("URGENTE")) {
-            nivelDeSuspeita = nivelDeSuspeita + 1;
+        for (String termoSensacionalista:TERMOS_SENSACIONALISTAS){
+            if (texto.contains(termoSensacionalista)) {
+                nivelDeSuspeita++;
+            }
         }
 
         if (texto.length() < 10) {
-            nivelDeSuspeita = nivelDeSuspeita + 1;
+            nivelDeSuspeita++;
         }
 
         return nivelDeSuspeita;
