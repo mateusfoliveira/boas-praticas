@@ -11,11 +11,30 @@ public class InterfaceNoticia {
 
     }
 
+    private boolean validarEntradaTexto(String texto){
+        return !texto.isBlank();
+    }
+
     public String capturarTexto(){
 
-        System.out.print("Digite o texto: ");
+        String texto;
 
-        return scanner.nextLine();
+        while(true){
+
+            System.out.print("Digite o texto: ");
+            texto = scanner.nextLine();
+
+            if(validarEntradaTexto(texto)){
+                break;
+            }
+
+            else{
+                System.out.println("Erro: Texto inválido! (vazio) Tente novamente.");
+            }
+
+        }
+
+        return texto;
     }
 
     public String capturarClassificacao(){
@@ -57,15 +76,12 @@ public class InterfaceNoticia {
         System.out.println("4 - sair");
     }
 
-
     public void menu() {
         while(true) {
 
             printMenu();
 
-            String opcao = scanner.nextLine();
-
-            switch (opcao) {
+            switch (scanner.nextLine()) {
                 case "1":
                     adicionarNoticiaComClassificacao();
                     break;
@@ -79,7 +95,7 @@ public class InterfaceNoticia {
                     scanner.close();
                     return;
                 default:
-                    System.out.println("errado");
+                    System.out.println("Entrada inválida! Tente novamente.");
                     break;
             }
         }
