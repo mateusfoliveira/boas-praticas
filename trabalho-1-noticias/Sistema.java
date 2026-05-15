@@ -3,7 +3,11 @@ import java.util.Scanner;
 
 public class Sistema {
 
-    ArrayList<Noticia> noticias = new ArrayList<>();
+    private final ArrayList<Noticia> noticias = new ArrayList<>();
+
+    public ArrayList<Noticia> getNoticias() {
+        return noticias;
+    }
 
     // função que faz tudo
     public void criarNoticia(String texto, String classificacao) {
@@ -14,6 +18,7 @@ public class Sistema {
 
             if (classificacao == null || classificacao.equals("")) {
                 noticia.setClassificacao("duvidosa");
+
             } else {
                 noticia.setClassificacao(classificacao);
             }
@@ -21,15 +26,6 @@ public class Sistema {
             noticias.add(noticia);
         } else {
             System.out.println("erro");
-        }
-    }
-
-    public void listarNoticias() {
-        // lista tudo
-        for (Noticia noticia : noticias) {
-            System.out.println("Texto: " + noticia.getTexto());
-            System.out.println("Classificacao: " + noticia.getClassificacao());
-            System.out.println("-------------------");
         }
     }
 
@@ -67,53 +63,5 @@ public class Sistema {
         } else {
             return "falsa";
         }
-    }
-
-    public void adicionarNoticiaComClassificacao(Scanner scanner) {
-
-        System.out.print("Digite o texto: ");
-        String texto = scanner.nextLine();
-
-        System.out.print("Digite classificacao: ");
-        String classificacao = scanner.nextLine();
-
-        criarNoticia(texto,classificacao);
-    }
-
-    public void adicionarNoticiaSemClassificacao(Scanner scanner) {
-
-        System.out.print("Digite o texto: ");
-
-        String texto = scanner.nextLine();
-
-        String classificacao = classificarTexto(texto);
-
-        criarNoticia(texto, classificacao);
-    }
-
-    public void menu(Scanner scanner) {
-
-        while (true) {
-            System.out.println("1 - adicionar manual");
-            System.out.println("2 - adicionar automatico");
-            System.out.println("3 - listar");
-            System.out.println("4 - sair");
-
-            String opcao = scanner.nextLine();
-
-            if (opcao.equals("1")) {
-                adicionarNoticiaComClassificacao(scanner);
-            } else if (opcao.equals("2")) {
-                adicionarNoticiaSemClassificacao(scanner);
-            } else if (opcao.equals("3")) {
-                listarNoticias();
-            } else if (opcao.equals("4")) {
-                break;
-            } else {
-                System.out.println("errado");
-            }
-        }
-
-        scanner.close();
     }
 }

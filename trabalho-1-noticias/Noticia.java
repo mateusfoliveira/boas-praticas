@@ -1,6 +1,7 @@
 public class Noticia {
 
-    private String texto;
+    private final String texto;
+
     private String classificacao;
 
     public String getTexto() {
