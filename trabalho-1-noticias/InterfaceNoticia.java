@@ -41,7 +41,7 @@ public class InterfaceNoticia {
 
         String classificacaoString;
 
-        System.out.print("Digite a classificacao (confiavel,falsa,duvidosa): ");
+        System.out.print("Digite a classificacao (confiavel,falsa ou duvidosa): ");
 
         classificacaoString = scanner.nextLine();
 
@@ -54,13 +54,22 @@ public class InterfaceNoticia {
         }
     }
 
+    private void tentarSalvarNoticia(String texto, Classificacao classificacao){
+        try {
+            sistema.criarNoticia(texto,classificacao);
+        }
+        catch (IllegalArgumentException e){
+            System.out.println("Erro no Sistema: Tentativa de salvar noticia com dados nulos.");
+        }
+    }
+
     private void adicionarNoticiaComClassificacao() {
 
         String texto = capturarTexto();
 
         Classificacao classificacao = capturarClassificacao();
 
-        sistema.criarNoticia(texto,classificacao);
+        tentarSalvarNoticia(texto,classificacao);
     }
 
     private void adicionarNoticiaSemClassificacao() {
@@ -69,7 +78,7 @@ public class InterfaceNoticia {
 
         Classificacao classificacao = sistema.classificarTexto(texto);
 
-        sistema.criarNoticia(texto, classificacao);
+        tentarSalvarNoticia(texto,classificacao);
     }
 
     private void listarNoticias() {

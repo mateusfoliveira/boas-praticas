@@ -12,18 +12,14 @@ public class Sistema {
 
     public void criarNoticia(String texto, Classificacao classificacao) {
 
-        if (texto != null) {
-            if (classificacao == null) {
-                classificacao = Classificacao.duvidosa;
-            }
-
-            Noticia noticia = new Noticia(texto,classificacao);
-
-            noticias.add(noticia);
-
-        } else {
-            System.out.println("erro");
+        if (texto == null || classificacao == null){
+            throw new IllegalArgumentException();
         }
+
+        Noticia noticia = new Noticia(texto,classificacao);
+
+        noticias.add(noticia);
+
     }
 
     private int calcularSuspeita(String texto){
