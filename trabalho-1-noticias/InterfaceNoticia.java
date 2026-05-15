@@ -15,7 +15,7 @@ public class InterfaceNoticia {
         return !texto.isBlank();
     }
 
-    public String capturarTexto(){
+    private String capturarTexto(){
 
         String texto;
 
@@ -37,13 +37,13 @@ public class InterfaceNoticia {
         return texto;
     }
 
-    public String capturarClassificacao(){
+    private String capturarClassificacao(){
 
         System.out.print("Digite classificacao: ");
         return scanner.nextLine();
     }
 
-    public void adicionarNoticiaComClassificacao() {
+    private void adicionarNoticiaComClassificacao() {
 
         String texto = capturarTexto();
         String classificacao = capturarClassificacao();
@@ -51,7 +51,7 @@ public class InterfaceNoticia {
         sistema.criarNoticia(texto,classificacao);
     }
 
-    public void adicionarNoticiaSemClassificacao() {
+    private void adicionarNoticiaSemClassificacao() {
 
         String texto = capturarTexto();
 
@@ -60,7 +60,7 @@ public class InterfaceNoticia {
         sistema.criarNoticia(texto, classificacao);
     }
 
-    public void listarNoticias() {
+    private void listarNoticias() {
 
         for (Noticia noticia : sistema.getNoticias()) {
             System.out.println("Texto: " + noticia.getTexto());
@@ -69,7 +69,7 @@ public class InterfaceNoticia {
         }
     }
 
-    public void printMenu(){
+    private void printMenu(){
         System.out.println("1 - adicionar manual");
         System.out.println("2 - adicionar automatico");
         System.out.println("3 - listar");

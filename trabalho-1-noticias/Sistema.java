@@ -30,7 +30,7 @@ public class Sistema {
         }
     }
 
-    public int calcularSuspeita(String texto){
+    private int calcularSuspeita(String texto){
 
         int nivelDeSuspeita = 0;
 
