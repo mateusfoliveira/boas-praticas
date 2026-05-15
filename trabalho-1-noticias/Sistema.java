@@ -9,9 +9,9 @@ public class Sistema {
         return noticias;
     }
 
-    // função que faz tudo
+    //TODO: refatorar essa funcao
     public void criarNoticia(String texto, String classificacao) {
-        // adiciona coisa
+
         if (texto != null && !texto.equals("")) {
 
             Noticia noticia = new Noticia(texto);

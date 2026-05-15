@@ -11,7 +11,6 @@ public class InterfaceNoticia {
 
     }
 
-
     public void adicionarNoticiaComClassificacao() {
 
         System.out.print("Digite o texto: ");
