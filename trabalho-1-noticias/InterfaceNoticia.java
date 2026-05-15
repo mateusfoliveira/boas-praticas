@@ -37,16 +37,28 @@ public class InterfaceNoticia {
         return texto;
     }
 
-    private String capturarClassificacao(){
+    private Classificacao capturarClassificacao(){
 
-        System.out.print("Digite classificacao: ");
-        return scanner.nextLine();
+        String classificacaoString;
+
+        System.out.print("Digite a classificacao (confiavel,falsa,duvidosa): ");
+
+        classificacaoString = scanner.nextLine();
+
+        try {
+            return Classificacao.valueOf(classificacaoString.trim().toLowerCase());
+
+        } catch (IllegalArgumentException e) {
+            System.out.println("Erro: Classificação invalida! Classificando como duvidosa.");
+            return Classificacao.duvidosa;
+        }
     }
 
     private void adicionarNoticiaComClassificacao() {
 
         String texto = capturarTexto();
-        String classificacao = capturarClassificacao();
+
+        Classificacao classificacao = capturarClassificacao();
 
         sistema.criarNoticia(texto,classificacao);
     }
@@ -55,7 +67,7 @@ public class InterfaceNoticia {
 
         String texto = capturarTexto();
 
-        String classificacao = sistema.classificarTexto(texto);
+        Classificacao classificacao = sistema.classificarTexto(texto);
 
         sistema.criarNoticia(texto, classificacao);
     }
@@ -64,7 +76,7 @@ public class InterfaceNoticia {
 
         for (Noticia noticia : sistema.getNoticias()) {
             System.out.println("Texto: " + noticia.getTexto());
-            System.out.println("Classificacao: " + noticia.getClassificacao());
+            System.out.println("Classificacao: " + noticia.getClassificacao().toString());
             System.out.println("-------------------");
         }
     }

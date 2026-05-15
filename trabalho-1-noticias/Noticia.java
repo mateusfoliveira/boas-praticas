@@ -2,17 +2,17 @@ public class Noticia {
 
     private final String texto;
 
-    private String classificacao;
+    private Classificacao classificacao;
 
     public String getTexto() {
         return texto;
     }
 
-    public String getClassificacao() {
+    public Classificacao getClassificacao() {
         return classificacao;
     }
 
-    public void setClassificacao(String classificacao) {
+    public void setClassificacao(Classificacao classificacao) {
         this.classificacao = classificacao;
     }
 
@@ -20,7 +20,7 @@ public class Noticia {
         this.texto = texto;
     }
 
-    public Noticia(String texto, String classificacao) {
+    public Noticia(String texto, Classificacao classificacao) {
         this.texto = texto;
         this.classificacao = classificacao;
     }

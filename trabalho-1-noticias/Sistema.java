@@ -10,21 +10,17 @@ public class Sistema {
         return noticias;
     }
 
-    //TODO: refatorar essa funcao
-    public void criarNoticia(String texto, String classificacao) {
+    public void criarNoticia(String texto, Classificacao classificacao) {
 
-        if (texto != null && !texto.equals("")) {
-
-            Noticia noticia = new Noticia(texto);
-
-            if (classificacao == null || classificacao.equals("")) {
-                noticia.setClassificacao("duvidosa");
-
-            } else {
-                noticia.setClassificacao(classificacao);
+        if (texto != null) {
+            if (classificacao == null) {
+                classificacao = Classificacao.duvidosa;
             }
 
+            Noticia noticia = new Noticia(texto,classificacao);
+
             noticias.add(noticia);
+
         } else {
             System.out.println("erro");
         }
@@ -51,16 +47,16 @@ public class Sistema {
         return nivelDeSuspeita;
     }
 
-    public String classificarTexto(String texto) {
+    public Classificacao classificarTexto(String texto) {
 
         int nivelDeSuspeita = calcularSuspeita(texto);
 
         if (nivelDeSuspeita == 0) {
-            return "confiavel";
+            return Classificacao.confiavel;
         } else if (nivelDeSuspeita == 1) {
-            return "duvidosa";
+            return Classificacao.duvidosa;
         } else {
-            return "falsa";
+            return Classificacao.falsa;
         }
     }
 }
