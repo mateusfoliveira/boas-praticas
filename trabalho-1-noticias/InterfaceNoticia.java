@@ -11,21 +11,30 @@ public class InterfaceNoticia {
 
     }
 
-    public void adicionarNoticiaComClassificacao() {
+    public String capturarTexto(){
 
         System.out.print("Digite o texto: ");
-        String texto = scanner.nextLine();
+
+        return scanner.nextLine();
+    }
+
+    public String capturarClassificacao(){
 
         System.out.print("Digite classificacao: ");
-        String classificacao = scanner.nextLine();
+        return scanner.nextLine();
+    }
+
+    public void adicionarNoticiaComClassificacao() {
+
+        String texto = capturarTexto();
+        String classificacao = capturarClassificacao();
 
         sistema.criarNoticia(texto,classificacao);
     }
 
     public void adicionarNoticiaSemClassificacao() {
 
-        System.out.print("Digite o texto: ");
-        String texto = scanner.nextLine();
+        String texto = capturarTexto();
 
         String classificacao = sistema.classificarTexto(texto);
 
