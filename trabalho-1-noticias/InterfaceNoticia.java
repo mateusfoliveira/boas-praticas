@@ -86,6 +86,11 @@ public class InterfaceNoticia {
 
     private void listarNoticias() {
 
+        if(classificadorNoticias.getNoticias().isEmpty()){
+            System.out.println("A lista de noticias está vazia!");
+            return;
+        }
+
         for (Noticia noticia : classificadorNoticias.getNoticias()) {
             System.out.println("Texto: " + noticia.getTexto());
             System.out.println("Classificacao: " + noticia.getClassificacao().toString());
