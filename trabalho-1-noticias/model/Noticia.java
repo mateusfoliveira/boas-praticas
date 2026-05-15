@@ -4,7 +4,7 @@ public class Noticia {
 
     private final String texto;
 
-    private Classificacao classificacao;
+    private final Classificacao classificacao;
 
     public String getTexto() {
         return texto;

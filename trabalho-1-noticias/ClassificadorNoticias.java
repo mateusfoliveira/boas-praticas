@@ -10,7 +10,7 @@ public class ClassificadorNoticias {
     private static final String[] TERMOS_SENSACIONALISTAS = {"URGENTE", "!!!"};
 
     public ArrayList<Noticia> getNoticias() {
-        return noticias;
+        return new ArrayList<>(noticias);
     }
 
     public void criarNoticia(String texto, Classificacao classificacao) {
