@@ -3,6 +3,11 @@ import model.Noticia;
 
 import java.util.Scanner;
 
+/**
+ * Camada de visualização responsável pela interação com o usuário via terminal.
+ * Realiza a captura, validação e tratamento prévio dos dados de entrada (Programação Defensiva)
+ * antes de enviá-los para a camada de serviço.
+ */
 public class InterfaceNoticia {
 
     private final ClassificadorNoticias classificadorNoticias;

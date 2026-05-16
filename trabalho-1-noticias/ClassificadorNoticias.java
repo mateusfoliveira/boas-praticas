@@ -13,6 +13,12 @@ public class ClassificadorNoticias {
         return new ArrayList<>(noticias);
     }
 
+    /**
+     * Instancia e armazena uma nova notícia no sistema.
+     * @param texto         O conteúdo da notícia (não pode ser nulo).
+     * @param classificacao A classificação validada (não pode ser nula).
+     * @throws IllegalArgumentException Se algum dos parâmetros recebidos for nulo.
+     */
     public void criarNoticia(String texto, Classificacao classificacao) {
 
         if (texto == null || classificacao == null){
@@ -25,6 +31,13 @@ public class ClassificadorNoticias {
 
     }
 
+    /**
+     * Calcula o nível de suspeita de um texto com base em regras de negócio predefinidas.
+     * O algoritmo penaliza textos sem citação de fontes, uso de termos sensacionalistas
+     * e textos excessivamente curtos.
+     * @param texto O texto bruto a ser analisado.
+     * @return Um inteiro representando a pontuação de suspeita,
+     */
     private int calcularSuspeita(String texto){
 
         int nivelDeSuspeita = 0;
