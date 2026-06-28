@@ -8,7 +8,7 @@ import java.util.Date;   // (nao usado)
 
 public class Estoque {
 
-    static String SENHA_ADMIN = System.getenv("SENHA_ADMIN");  // senha do admin
+    static String SENHA_ADMIN = System.getenv("SENHA_ADMIN");
 
     static ArrayList<Produto> produtos = new ArrayList<>();
     static ArrayList<String> hist = new ArrayList<>();  // historico
@@ -95,41 +95,73 @@ public class Estoque {
     }
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("\n1-Cadastrar  2-Vender  3-Listar  4-Estoque baixo  5-Admin  0-Sair");
             System.out.print("Opcao: ");
-            String op = sc.next();
-            if (op.equals("1")) {
-                System.out.print("Nome: ");
-                String n = sc.next();
-                System.out.print("Preco: ");
-                double p = Double.parseDouble(sc.next());   // quebra se digitar texto
-                System.out.print("Qtd: ");
-                int q = Integer.parseInt(sc.next());        // quebra se digitar texto
-                add(n, p, q);
-            } else if (op.equals("2")) {
-                System.out.print("Nome do produto: ");
-                String n = sc.next();
-                System.out.print("Quantidade: ");
-                int q = Integer.parseInt(sc.next());
-                vender(n, q);
-            } else if (op.equals("3")) {
-                listar();
-            } else if (op.equals("4")) {
-                relatorio_estoque_baixo();
-            } else if (op.equals("5")) {
-                System.out.print("Senha: ");
-                String s = sc.next();
-                if (s.equals(SENHA_ADMIN)) {
-                    System.out.println("Acesso liberado");
-                } else {
-                    System.out.println("Senha errada");
+            String opcao = scanner.next();
+            switch (opcao) {
+                case "1": {
+                    System.out.print("Nome: ");
+                    String nome = scanner.next();
+
+                    double preco;
+                    int quantidade;
+
+                    try {
+                        System.out.print("Preco: ");
+                        preco = Double.parseDouble(scanner.next());
+                        System.out.print("Qtd: ");
+                        quantidade = Integer.parseInt(scanner.next());
+                    } catch (NumberFormatException e) {
+                        System.out.println("Erro, preço ou quantidade inválidos tente novamente.");
+                        continue;
+                    } catch (NullPointerException n) {
+                        System.out.println("Erro, string preco vazia, tente novamente.");
+                        continue;
+                    }
+
+                    add(nome, preco, quantidade);
+
+                    break;
                 }
-            } else if (op.equals("0")) {
-                break;
-            } else {
-                System.out.println("Opcao invalida");
+                case "2": {
+                    System.out.print("Nome do produto: ");
+                    String nome = scanner.next();
+                    System.out.print("Quantidade: ");
+
+                    int quantidade;
+
+                    try {
+                        quantidade = Integer.parseInt(scanner.next());
+                    } catch (NumberFormatException e) {
+                        System.out.println("Quantidade inválida tente novamente.");
+                        continue;
+                    }
+
+                    vender(nome, quantidade);
+                    break;
+                }
+                case "3":
+                    listar();
+                    break;
+                case "4":
+                    relatorio_estoque_baixo();
+                    break;
+                case "5":
+                    System.out.print("Senha: ");
+                    String s = scanner.next();
+                    if (s.equals(SENHA_ADMIN)) {
+                        System.out.println("Acesso liberado");
+                    } else {
+                        System.out.println("Senha errada");
+                    }
+                    break;
+                case "0":
+                    return;
+                default:
+                    System.out.println("Opcao invalida");
+                    break;
             }
         }
     }
