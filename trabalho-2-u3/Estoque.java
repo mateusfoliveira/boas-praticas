@@ -8,7 +8,7 @@ import java.util.Date;   // (nao usado)
 
 public class Estoque {
 
-    static String SENHA_ADMIN = "1234";  // senha do admin
+    static String SENHA_ADMIN = System.getenv("SENHA_ADMIN");  // senha do admin
 
     static ArrayList<Produto> produtos = new ArrayList<>();
     static ArrayList<String> hist = new ArrayList<>();  // historico
